@@ -3,18 +3,9 @@
   "version": "2.5.0",
   "description": "a mapbox geocoder component",
   "main": "index.js",
-  "scripts": {
-    "test": "tape test.js",
-    "start": "watchify example/site.js -o example/bundle.js & st -nc"
-  },
   "repository": {
     "type": "git",
     "url": "git@github.com:mapbox/react-geocoder.git"
-  },
-  "browserify": {
-    "transform": [
-      "babelify"
-    ]
   },
   "keywords": [
     "react",
@@ -30,15 +21,27 @@
     "url": "https://github.com/mapbox/react-geocoder/issues"
   },
   "homepage": "https://github.com/mapbox/react-geocoder",
-  "devDependencies": {
-    "browserify": "^6.2.0",
-    "st": "^0.5.2",
-    "tape": "^4.6.2",
-    "watchify": "^2.1.0"
-  },
   "dependencies": {
-    "xhr": "^1.17.0",
-    "babelify": "^6.0.0",
-    "react": "0.13.x"
+    "prop-types": "^15.6.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^3.4.8",
+    "@storybook/addon-console": "^1.0.4",
+    "@storybook/addon-links": "^3.4.8",
+    "@storybook/addons": "^3.4.8",
+    "@storybook/react": "^3.4.8",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.26.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.10.0"
+  },
+  "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   }
 }
