@@ -2,7 +2,18 @@ import 'babel-polyfill';
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import search from './search';
+
+import {
+  Input,
+  InputWrapper,
+  SearchIcon,
+  ResultList,
+  Result,
+  ResultLink,
+  Wrapper,
+} from './styles';
 
 export default class Geocoder extends Component {
   constructor() {
@@ -13,17 +24,26 @@ export default class Geocoder extends Component {
       focus: null,
       loading: false,
       searchTime: new Date(),
+      value: '',
     };
 
     this.onInput = this.onInput.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
     this.clickOption = this.clickOption.bind(this);
     this.onResult = this.onResult.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onSelect = this.onSelect.bind(this);
   }
 
   componentDidMount() {
     const { focusOnMount } = this.props;
     if (focusOnMount) this.input.focus();
+  }
+
+  onChange({ target }) {
+    this.setState({
+      value: target.value,
+    });
   }
 
   onInput(e) {
@@ -100,6 +120,23 @@ export default class Geocoder extends Component {
     }
   }
 
+  onSelect(place) {
+    const { onSelect } = this.props;
+
+    this.setState({
+      value: '',
+      results: [],
+    });
+
+    onSelect(place);
+  }
+
+  setInput(text) {
+    this.setState({
+      value: text,
+    });
+  }
+
   moveFocus(dir) {
     const { loading, focus, results } = this.state;
     if (loading) return;
@@ -118,14 +155,14 @@ export default class Geocoder extends Component {
     const { onSelect } = this.props;
 
     if (focus !== null) {
-      onSelect(results[focus]);
+      this.onSelect(results[focus]);
     }
   }
 
   clickOption(place, listLocation) {
     const { onSelect } = this.props;
 
-    onSelect(place);
+    this.onSelect(place);
     this.setState({ focus: listLocation });
 
     // focus on the input after click to maintain key traversal
@@ -142,51 +179,75 @@ export default class Geocoder extends Component {
       resultsClass,
       resultClass,
       resultFocusClass,
+      ResultList: CustomResultList,
+      Result: CustomResult,
+      ResultLink: CustomResultLink,
+      InputWrapper: CustomInputWrapper,
+      SeachIcon: CustomSearchIcon,
+      Input: CustomInput,
+      Wraapper: CustomWrapper,
     } = this.props;
 
     const {
       results,
       loading,
       focus,
+      value,
     } = this.state;
 
+    const Components = {
+      ResultList: CustomResultList || ResultList,
+      Result: CustomResult || Result,
+      ResultLink: CustomResultLink || ResultLink,
+      InputWrapper: CustomInputWrapper || InputWrapper,
+      SearchIcon: CustomSearchIcon || SearchIcon,
+      Input: CustomInput || Input,
+      Wrapper: CustomWrapper || Wrapper,
+    };
+
     const input = (
-      <input
-        ref={(ref) => { this.input = ref; }}
-        className={inputClass}
-        onInput={this.onInput}
-        onKeyDown={this.onKeyDown}
-        placeholder={inputPlaceholder}
-        type="text"
-      />
+      <Components.InputWrapper>
+        <Components.SearchIcon />
+        <Components.Input
+          innerRef={(ref) => { this.input = ref; }}
+          className={inputClass}
+          onInput={this.onInput}
+          onKeyDown={this.onKeyDown}
+          onChange={this.onChange}
+          placeholder={inputPlaceholder}
+          type="text"
+          value={value}
+        />
+      </Components.InputWrapper>
     );
+
     return (
-      <div>
+      <Components.Wrapper>
         {inputPosition === 'top' && input}
-        {results.length > 0 && (
-          <ul className={`
-            ${showLoader && loading
-            ? 'loading'
-            : ''
-            }
-            ${resultsClass}`}
-          >
-            {results.map((result, i) => (
-              <li key={result.id}>
-                <button
+        <Components.ResultList className={`
+              ${showLoader && loading
+          ? 'loading'
+          : ''
+              }
+              ${resultsClass}`}
+        >
+          {results.length > 0 && (
+            results.map((result, i) => (
+              <Components.Result key={result.id}>
+                <Components.ResultLink
                   type="button"
                   onClick={() => this.clickOption(result, i)}
                   className={`${resultClass} ${i === focus ? resultFocusClass : ''}`}
                   key={result.id}
                 >
                   {result.place_name}
-                </button>
-              </li>
-            ))}
-          </ul>
-        )}
+                </Components.ResultLink>
+              </Components.Result>
+            ))
+          )}
+        </Components.ResultList>
         {inputPosition === 'bottom' && input}
-      </div>
+      </Components.Wrapper>
     );
   }
 }
@@ -200,6 +261,14 @@ Geocoder.propTypes = {
   resultClass: PropTypes.string,
   resultsClass: PropTypes.string,
   resultFocusClass: PropTypes.string,
+
+  ResultList: PropTypes.element,
+  Result: PropTypes.element,
+  ResultLink: PropTypes.element,
+  InputWrapper: PropTypes.element,
+  SeachIcon: PropTypes.element,
+  Input: PropTypes.element,
+  Wraapper: PropTypes.element,
 
   showLoader: PropTypes.bool,
   focusOnMount: PropTypes.bool,
@@ -218,17 +287,32 @@ Geocoder.propTypes = {
 
 Geocoder.defaultProps = {
   endpoint: 'https://api.tiles.mapbox.com',
+
   inputClass: '',
   resultClass: '',
   resultsClass: '',
   resultFocusClass: 'strong',
+
+  ResultList: null,
+  Result: null,
+  ResultLink: null,
+  InputWrapper: null,
+  SeachIcon: null,
+  Input: null,
+  Wraapper: null,
+
   inputPosition: 'top',
+
   inputPlaceholder: 'Search',
+
   showLoader: false,
+
   source: 'mapbox.places',
   proximity: '',
+
   bbox: '',
   types: '',
-  onSuggest() {},
+
+  onSuggest: () => null,
   focusOnMount: true,
 };
