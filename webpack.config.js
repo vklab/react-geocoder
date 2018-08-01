@@ -1,5 +1,12 @@
+const path = require('path');
+
 module.exports = {
-  entry: ['babel-polyfill', './src'],
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'main.js',
+    library: 'reactGeocoder',
+    libraryTarget: 'umd',
+  },
   module: {
     rules: [
       {
