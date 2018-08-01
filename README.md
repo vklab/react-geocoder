@@ -39,3 +39,11 @@ An `accessToken` is assumed to be a valid Mapbox accessToken.
   focusOnMount=optional bool, default true
   />
 ```
+
+# Building
+Use Storybook to ensure everything looks right. Then
+
+```
+yarn build
+```
+
