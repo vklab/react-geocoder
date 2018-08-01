@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import React from 'react';
 
-import Geocoder from '..';
+import Geocoder from '../src';
 
 import ACCESS_TOKEN from '../ACCESS_TOKEN';
 
