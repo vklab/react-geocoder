@@ -1,3 +1,5 @@
+import 'babel-polyfill';
+
 export default async function search({
   endpoint,
   source,
