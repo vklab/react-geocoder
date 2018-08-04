@@ -1,3 +1,3 @@
-import Geocoder from './dist/main';
+import Geocoder from './src';
 
 export default Geocoder;

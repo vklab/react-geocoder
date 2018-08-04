@@ -1,1 +1,1 @@
-export default 'pk.eyJ1IjoiYW1kdXJpdHphIiwiYSI6ImNqOGtmbHJiYzBjNjkzMXJ0cGV0YTBpM2gifQ.iEwhZgWFHQ6xsbSgvEjRJw';
+export default 'CHANGEME';
