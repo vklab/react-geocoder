@@ -280,7 +280,7 @@ Geocoder.propTypes = {
   onSuggest: PropTypes.func,
 
   proximity: PropTypes.string,
-  bbox: PropTypes.string,
+  bbox: PropTypes.arrayOf(PropTypes.number),
 
   types: PropTypes.string,
 };
@@ -310,7 +310,7 @@ Geocoder.defaultProps = {
   source: 'mapbox.places',
   proximity: '',
 
-  bbox: '',
+  bbox: [],
   types: '',
 
   onSuggest: () => null,

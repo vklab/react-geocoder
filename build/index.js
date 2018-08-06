@@ -382,7 +382,7 @@
     onSuggest: _propTypes2.default.func,
 
     proximity: _propTypes2.default.string,
-    bbox: _propTypes2.default.string,
+    bbox: _propTypes2.default.arrayOf(_propTypes2.default.number),
 
     types: _propTypes2.default.string
   };
@@ -412,7 +412,7 @@
     source: 'mapbox.places',
     proximity: '',
 
-    bbox: '',
+    bbox: [],
     types: '',
 
     onSuggest: function onSuggest() {
