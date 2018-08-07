@@ -16,10 +16,11 @@ export const Wrapper = styled.div`
 export const Input = styled.input`
     margin: 0;
     color: rgba(0,0,0,.5);
-    border: 1px solid rgba(0,0,0,.5);
+    border: 1px solid rgba(0, 0, 0, 0.125);
     padding: 10px 10px 10px 40px;
-    box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
     border-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 
     width: 100%;
 
@@ -61,6 +62,7 @@ export const Result = styled.li`
 `;
 
 export const ResultLink = styled.button`
+    text-align: left;
     font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
     font-size: 14px;
     background: none;
@@ -71,6 +73,7 @@ export const ResultLink = styled.button`
     overflow: hidden;
     text-overflow: ellipsis;
     color: #404040;
+    cursor: pointer;
 
     &:active {
         color: #202020;

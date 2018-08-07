@@ -34,7 +34,7 @@
     var Input = exports.Input = _styledComponents2.default.input.withConfig({
         displayName: 'styles__Input',
         componentId: 's1o8q90i-1'
-    })(['margin:0;color:rgba(0,0,0,.5);border:1px solid rgba(0,0,0,.5);padding:10px 10px 10px 40px;box-shadow:0 0 0 2px rgba(0,0,0,0.1);border-radius:5px;width:100%;font-family:\'Helvetica Neue\',Arial,Helvetica,sans-serif;font-size:14px;']);
+    })(['margin:0;color:rgba(0,0,0,.5);border:1px solid rgba(0,0,0,0.125);padding:10px 10px 10px 40px;border-radius:5px;border-bottom-left-radius:0;border-bottom-right-radius:0;width:100%;font-family:\'Helvetica Neue\',Arial,Helvetica,sans-serif;font-size:14px;']);
 
     var InputWrapper = exports.InputWrapper = _styledComponents2.default.div.withConfig({
         displayName: 'styles__InputWrapper',
@@ -59,6 +59,6 @@
     var ResultLink = exports.ResultLink = _styledComponents2.default.button.withConfig({
         displayName: 'styles__ResultLink',
         componentId: 's1o8q90i-6'
-    })(['font-family:\'Helvetica Neue\',Arial,Helvetica,sans-serif;font-size:14px;background:none;border:none;outline:inherit;width:100%;padding:10px;overflow:hidden;text-overflow:ellipsis;color:#404040;&:active{color:#202020;background-color:#eee;text-decoration:none;cursor:pointer;}']);
+    })(['text-align:left;font-family:\'Helvetica Neue\',Arial,Helvetica,sans-serif;font-size:14px;background:none;border:none;outline:inherit;width:100%;padding:10px;overflow:hidden;text-overflow:ellipsis;color:#404040;cursor:pointer;&:active{color:#202020;background-color:#eee;text-decoration:none;cursor:pointer;}']);
 });
 //# sourceMappingURL=styles.js.map
