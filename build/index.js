@@ -258,7 +258,8 @@
         this.setState({ focus: listLocation });
 
         // focus on the input after click to maintain key traversal
-        this.input.focus();
+        // this line doesn't work
+        // this.input.focus();
         return false;
       }
     }, {
